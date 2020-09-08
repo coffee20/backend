@@ -1,4 +1,6 @@
 const router = require('express').Router();
+const User = require('../models/user');
+const Test = require('../models/test');
 
 router.get('/', (req, res) => {
     res.send('This is api route.');
@@ -18,6 +20,23 @@ router.post('/users', function(req, res){
     user.gender = req.body.gender;
 
     user.save(function(err){
+        if(err){
+            console.error(err);
+            res.json({result: 0});
+            return;
+        }
+
+        res.json({result: 1});
+    });
+});
+
+// CREATE USER
+router.post('/tests', function(req, res){
+    let test = new Test();
+    test.name = req.body.name;
+    test.num = req.body.num;
+    
+    test.save(function(err){
         if(err){
             console.error(err);
             res.json({result: 0});

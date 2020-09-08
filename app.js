@@ -10,10 +10,12 @@ const port = process.env.PORT || 3000;
 
 mongoose.Promise = global.Promise;
 
-mongoose.connect(process.env.MONGO_URI, { useNewUrlParser: true })
+mongoose.connect(process.env.MONGO_URI, { 
+    useNewUrlParser: true,
+    useUnifiedTopology: true
+})
     .then(() => console.log("MongoDB Connected!"))
     .catch(e => console.error(e));
-
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
