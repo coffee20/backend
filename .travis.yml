@@ -1,0 +1,12 @@
+language: node_js 
+node_js:
+  - "12.17"
+before_install:
+  - npm install -g yarn
+branches:
+  only:
+    - master
+notification:
+  email:
+    recipients:
+      - zalcls951201@gmail.com

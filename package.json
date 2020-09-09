@@ -13,6 +13,7 @@
     "nodemon": "^2.0.4"
   },
   "scripts": {
+    "test": "exit",
     "start": "node app",
     "dev": "nodemon app"
   }
