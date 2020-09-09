@@ -1,8 +1,10 @@
 # ☕ 취향기반 음료 추천 앱 (Back-end)
 
+#### [API 문서](./docs/API.md) 
+
 ## Install
 
-기본 설치 : git, node, yarn(필수는 아님)
+#### 기본 설치 : [git](https://git-scm.com/downloads), [node](https://nodejs.org/ko/download/), [yarn](https://yarnpkg.com/getting-started/install#global-install)(필수는 아님)
 
 ```
 // git clone
