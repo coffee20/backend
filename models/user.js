@@ -1,3 +1,4 @@
+// User data schema
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
@@ -30,7 +31,8 @@ const userSchema = new Schema(
             trim: true
         },
         stars: [
-            {coffeeId: {type: String, required: true}, point:{type: Number, required: true, unique: true}}
+            {coffeeId: {type: String, required: true}, 
+            point:{type: Number, required: true, unique: true}}
         ],
         likes: [
             {coffeeId: {type: String, required: true, unique: true}}
