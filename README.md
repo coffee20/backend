@@ -1,6 +1,6 @@
 # ☕ 취향기반 음료 추천 앱 (Back-end)
 
-#### [AWS 주소](http://ec2-3-34-96-202.ap-northeast-2.compute.amazonaws.com/) [API 문서](./docs/API.md) 
+#### [AWS 주소](http://ec2-3-34-96-202.ap-northeast-2.compute.amazonaws.com/)   [API 문서](./docs/API.md) 
 
 ## Install
 
