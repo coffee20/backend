@@ -18,7 +18,8 @@ app.use(logger('dev'));
 
 // routing
 app.get('/', (req, res) => res.send('Hello World!'));
-app.use('/api/users', require('./routes/userRouter'));
+app.use('/api/user', require('./routes/userRouter'));
+app.use('/api/cafe', require('./routes/cafeRouter'));
 
 // Server connection
 app.listen(port, () => console.log(`Server listening on port ${port}`));
