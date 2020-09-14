@@ -1,17 +1,20 @@
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
-const coffeeSchema = new Schema(
-    {
-        id: String,
-        coffeeShop: String,
-        coffeeName: String,
-        price: Number,
-        start: array
+const coffeeSchema = new Schema({
+    coffeeName: {
+        type: String,
+        require: true;
     },
-    {
-        versionKey: "_somethingElse"
-    }
-);
+    cafeId: {
+        type: String,
+        require: true
+    },
+    points: [
+        {user_id: String, point: Number}
+    ]
+},{
+    versionKey: false
+});
 
 module.exports = mongoose.model("coffee", coffeeSchema);

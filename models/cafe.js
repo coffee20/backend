@@ -7,6 +7,8 @@ const cafeSchema = new mongoose.Schema({
         unique: true,
         trim: true
     }
+},{
+    versionKey: false
 });
 
 module.exports = mongoose.model("cafe", cafeSchema, 'cafes');

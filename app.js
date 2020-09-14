@@ -20,6 +20,7 @@ app.use(logger('dev'));
 app.get('/', (req, res) => res.send('Hello World!'));
 app.use('/api/user', require('./routes/userRouter'));
 app.use('/api/cafe', require('./routes/cafeRouter'));
+//app.use('/api/coffee', require('./routes/coffeeRouter'));
 
 // Server connection
 app.listen(port, () => console.log(`Server listening on port ${port}`));

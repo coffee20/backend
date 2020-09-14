@@ -6,8 +6,8 @@ const router = require('express').Router();
 const User = require('../models/user');
 
 // GET SINGLE USER
-router.get('/:user_id', function(req, res){
-    User.findOne({_id: req.params.user_id}, (err, user) => {
+router.get('/getUserByEmail/:user_email', function(req, res){
+    User.findOne({email: req.params.user_email}, (err, user) => {
         if (err) return res.status(500).json({error: err});
         if (!user) return res.status(404).json({error: "User is not exist"});
         res.status(200).json(user);
@@ -15,7 +15,7 @@ router.get('/:user_id', function(req, res){
 });
 
 // CREATE USER
-router.post('/', function(req, res){
+router.post('/signup/', function(req, res){
     let user = new User();
     user.email = req.body.email;
     user.password = req.body.password;
@@ -34,8 +34,8 @@ router.post('/', function(req, res){
 });
 
 // UPDATE THE USER
-router.put('/:email', function(req, res){
-    User.findById({email:req.params.email}, (err, user) => {
+router.put('/updateUserByEmail/:email', function(req, res){
+    User.findOne({email:req.params.email}, (err, user) => {
         if (err) return res.status(500).json({error: err});
         if (!user) return res.status(404).json({error: "User is not exist"});
 
@@ -56,13 +56,21 @@ router.put('/:email', function(req, res){
 });
 
 // DELETE USER
-router.delete('/:email', function(req, res){
-    res.end();
+router.delete('/deleteUserByEmail/:user_email', function(req, res){
+    User.remove({email: user_email}, (err) => {
+        if(err) throw err;
+        res.json({result: 1, message: "remove success!"});
+    });
 });
 
 // User Star point
-router.put('/:email/star/:coffee_id', (req, res) => {
-    res.end();
+router.put('/starPoint/:user_email/:coffee_id', (req, res) => {
+    User.findOne({email: user_email}, (err, user) => {
+        if (err) return res.status(500).json({error: err});
+        if (!user) return res.status(404).json({error: "User is not exist"});
+
+
+    })
 })
 
 module.exports = router;

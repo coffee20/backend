@@ -1,7 +1,7 @@
 const router = require('express').Router();
 const Cafe = require('../models/cafe');
 
-router.post('/', (req, res) => {
+router.post('/insertCafeName', (req, res) => {
     let cafe = new Cafe();
     cafe.cafeName = req.body.cafeName;
 

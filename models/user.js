@@ -32,6 +32,9 @@ const userSchema = new mongoose.Schema(
         likes: [
             {coffeeId: {type: String, required: true, unique: true}}
         ]
+    },
+    {
+        versionKey: false
     }
 );
 
