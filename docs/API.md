@@ -1,5 +1,3 @@
-# References
-
 ## 1. DATA SCHEMA
 
 ### 1) User DATA
