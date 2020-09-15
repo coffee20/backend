@@ -2,6 +2,7 @@
 
 ### 1) User DATA
 
+- _id : mongoose.Types.ObjectId
 - email : String
 - password : String
 - birthYear : Number
@@ -14,6 +15,7 @@
 
 ### 2) Coffee DATA
 
+- _id : mongoose.Types.ObjectId
 - coffeeName : String
 - cafeId : String
   -커피를 판매하는 카페의 ID
@@ -22,6 +24,7 @@
 
 ### 3) Cafe DATA
 
+- _id : mongoose.Types.ObjectId
 - cafeName : String
 
 ---
