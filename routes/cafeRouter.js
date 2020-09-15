@@ -24,4 +24,5 @@ router.get('/getCafeIdFromName/:cafeName', (req, res) => {
     })
 })
 
+
 module.exports = router;

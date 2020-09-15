@@ -14,6 +14,15 @@ router.get('/getUserByEmail/:user_email', function(req, res){
     })
 });
 
+// GET SINGLE USER
+router.get('/getUserIdByEmail/:user_email', function(req, res){
+    User.findOne({email: req.params.user_email}, (err, user) => {
+        if (err) return res.status(500).json({error: err});
+        if (!user) return res.status(404).json({error: "User is not exist"});
+        res.status(200).json({_id: user._id});
+    })
+});
+
 // CREATE USER
 router.post('/signup/', function(req, res){
     let user = new User();
@@ -33,7 +42,7 @@ router.post('/signup/', function(req, res){
     });
 });
 
-// UPDATE THE USER
+// UPDATE THE USER 수정해야 함.
 router.put('/updateUserByEmail/:email', function(req, res){
     User.findOne({email:req.params.email}, (err, user) => {
         if (err) return res.status(500).json({error: err});
@@ -64,13 +73,29 @@ router.delete('/deleteUserByEmail/:user_email', function(req, res){
 });
 
 // User Star point
-router.put('/starPoint/:user_email/:coffee_id', (req, res) => {
-    User.findOne({email: user_email}, (err, user) => {
-        if (err) return res.status(500).json({error: err});
-        if (!user) return res.status(404).json({error: "User is not exist"});
+router.put('/starInsert/:user_id/:coffee_id/:point', (req, res) => {
+    User.findByIdAndUpdate(req.params.user_id, 
+        { "$push" : {"stars": {
+            "coffeeId" : req.params.coffee_id,
+            "point" : req.params.point
+        }}},
+        {"new": true, "upsert": true},
+        (err, star) => {
+            if(err) throw err;
+            res.json({result: 1, message: "star point success!"});
+        }
+    );
+})
 
-
-    })
+// Star point delete
+router.put('/starDelete/:user_id/:coffee_id', (req, res) => {
+    User.findByIdAndUpdate(req.params.user_id,
+        { "$pull": {"stars": {"coffeeId": req.params.coffee_id}}},
+        (err, star) => {
+            if(err) throw err;
+            res.json({result: 1, message: "star point deleted!"});
+        }
+    );
 })
 
 module.exports = router;

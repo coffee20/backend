@@ -4,7 +4,7 @@ const Schema = mongoose.Schema;
 const coffeeSchema = new Schema({
     coffeeName: {
         type: String,
-        require: true;
+        require: true
     },
     cafeId: {
         type: String,
