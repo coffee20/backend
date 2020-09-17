@@ -24,7 +24,7 @@ router.get('/getUserIdByEmail/:user_email', function(req, res){
 });
 
 // CREATE USER
-router.post('/signup/', function(req, res){
+router.post('/signup', function(req, res){
     let user = new User();
     user.email = req.body.email;
     user.password = req.body.password;
@@ -72,8 +72,8 @@ router.delete('/deleteUserByEmail/:user_email', function(req, res){
     });
 });
 
-// User Star point
-router.put('/starInsert/:user_id/:coffee_id/:point', (req, res) => {
+// User Star point insert
+router.put('/UserstarInsert/:user_id/:coffee_id/:point', (req, res) => {
     User.findByIdAndUpdate(req.params.user_id, 
         { "$push" : {"stars": {
             "coffeeId" : req.params.coffee_id,
@@ -82,18 +82,18 @@ router.put('/starInsert/:user_id/:coffee_id/:point', (req, res) => {
         {"new": true, "upsert": true},
         (err, star) => {
             if(err) throw err;
-            res.json({result: 1, message: "star point success!"});
+            res.json({result: 1, message: "star point success! : User"});
         }
     );
 })
 
 // Star point delete
-router.put('/starDelete/:user_id/:coffee_id', (req, res) => {
+router.put('/UserstarDelete/:user_id/:coffee_id', (req, res) => {
     User.findByIdAndUpdate(req.params.user_id,
         { "$pull": {"stars": {"coffeeId": req.params.coffee_id}}},
         (err, star) => {
             if(err) throw err;
-            res.json({result: 1, message: "star point deleted!"});
+            res.json({result: 1, message: "star point deleted! : User"});
         }
     );
 })
