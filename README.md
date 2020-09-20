@@ -30,3 +30,24 @@ yarn dev
 //start
 yarn start
 ```
+
+## AWS 명령어
+
+```
+// git pull
+cd backend/
+// git remote add origin https://github.com/masillab/backend.git
+git fetch
+// git pull -u origin master
+git pull 
+
+// kill running process
+ps -ef
+sudo kill -9 <running node process ID>
+
+// run new app
+sudo nohup node app.js &
+
+// exit
+exit
+```
