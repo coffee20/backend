@@ -11,10 +11,9 @@
 mkdir <dir_name>
 cd <dir_name>
 git clone https://github.com/s4ng/coffee.git
-```
 
-### install dependencies
-```
+//install dependencies
+
 // 1. npm
 npm i
 
