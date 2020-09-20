@@ -73,7 +73,7 @@ router.delete('/deleteUserByEmail/:user_email', function(req, res){
 });
 
 // User Star point insert
-router.put('/UserstarInsert/:user_id/:coffee_id/:point', (req, res) => {
+router.put('/userStarInsert/:user_id/:coffee_id/:point', (req, res) => {
     User.findByIdAndUpdate(req.params.user_id, 
         { "$push" : {"stars": {
             "coffeeId" : req.params.coffee_id,
@@ -88,7 +88,7 @@ router.put('/UserstarInsert/:user_id/:coffee_id/:point', (req, res) => {
 })
 
 // Star point delete
-router.put('/UserstarDelete/:user_id/:coffee_id', (req, res) => {
+router.put('/userStarDelete/:user_id/:coffee_id', (req, res) => {
     User.findByIdAndUpdate(req.params.user_id,
         { "$pull": {"stars": {"coffeeId": req.params.coffee_id}}},
         (err, star) => {

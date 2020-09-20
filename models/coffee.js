@@ -6,12 +6,16 @@ const coffeeSchema = new Schema({
         type: String,
         require: true
     },
-    cafeId: {
+    cafeName: {
         type: String,
         require: true
     },
     points: [
-        {user_id: String, point: Number}
+        {userId: {type: String, require: true, unique: true}, 
+         point: {type: Number, require: true}}
+    ],
+    tags: [
+        {type: String, unique: true}
     ]
 },{
     versionKey: false

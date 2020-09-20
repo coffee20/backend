@@ -5,7 +5,7 @@ const Coffee = require('../models/coffee');
 router.post('/coffeeInsert', function(req, res){
     let coffee = new Coffee();
     coffee.coffeeName = req.body.coffeeName;
-    coffee.cafeId = req.body.cafeId;
+    coffee.cafeName = req.body.cafeName;
 
     coffee.save(function(err){
         if(err){
@@ -18,29 +18,54 @@ router.post('/coffeeInsert', function(req, res){
     });
 });
 
+// Get Coffee ID by Cafe name and coffee name
+// 카페이름, 커피이름으로 커피 id 찾기
+router.get('/getCoffeeId/:Cafe_name/:Coffee_name', (req, res) => {
+	Coffee.findOne({coffeeName: req.params.Coffee_name, cafeName: req.params.Cafe_name}, (err, coffee) => {
+        if (err) return res.status(500).json({error: err});
+        if (!coffee) return res.status(404).json({error: "Coffee is not exist"});
+		res.status(200).json({_id: coffee._id});
+	})
+})
+
+// Get coffee's star point average
+router.get('/getCoffeePointsAvr/:coffee_id', (req, res) => {
+	Coffee.findById(req.params.coffee_id, (err, coffee) => {
+        if (err) return res.status(500).json({error: err});
+		if (!coffee) return res.status(404).json({error: "Coffee is not exist"});
+
+
+
+		res.status(200).json({point: 1});
+	})
+})
+
 // Coffee Star point insert
-router.put('coffeeStarInsert/:user_id/:coffee_id/:point', (req, res) => {
+router.put('/coffeeStarInsert/:coffee_id/:user_id/:point', (req, res) => {
 	Coffee.findByIdAndUpdate(req.params.coffee_id,
 		{ "$push" : {"points": {
-			"user_id" : req.params.user_id,
+			"userId" : req.params.user_id,
 			"point" : req.params.point
-		} } } ,
+		}}},
 		{"new" : true, "upsert": true},
 		(err, coffee) => {
 			if(err) throw err;
+        	if (!coffee) return res.status(404).json({error: "Coffee is not exist"});
 			res.json({result: 1, message: "star point success! : coffee"});
 		} 
 	);
 } )
 
 // Coffee Star Point delete
-router.put('/CoffeestarDelete/:user_id/:coffee_id', (req, res) => {
-	Coffee.findByIdAndUpdate(req.params.user_id,
-		{ "$pull" : {"points" : {"user_id" : req.params.user_id} } },
+router.put('/coffeeStarDelete/:coffee_id/:user_id', (req, res) => {
+	Coffee.findByIdAndUpdate(req.params.coffee_id,
+		{ "$pull" : {"points" : {"userId" : req.params.user_id} } },
 		(err, star) => {
 			if(err) throw err;
+        	if (!star) return res.status(404).json({error: "star is not exist"});
 			res.json({result: 1, message: "star point deleted! : coffee"})
 		} 
 	)
 } )
+
 module.exports = router;
