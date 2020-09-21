@@ -39,7 +39,7 @@ router.get('/getCoffeePointAvg/:coffee_id', (req, res) => {
 		for(let i = 0; i < coffeePoints.length; i++){
 			sum += coffeePoints[0].point;
 		}
-		avg = (sum / coffeePoints.length).toFixed(2);
+		avg = (sum / coffeePoints.length).toFixed(1);
 		res.status(200).json({"avg": avg});
 	})
 })
