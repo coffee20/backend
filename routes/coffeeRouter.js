@@ -29,14 +29,18 @@ router.get('/getCoffeeId/:Cafe_name/:Coffee_name', (req, res) => {
 })
 
 // Get coffee's star point average
-router.get('/getCoffeePointsAvr/:coffee_id', (req, res) => {
+router.get('/getCoffeePointAvg/:coffee_id', (req, res) => {
 	Coffee.findById(req.params.coffee_id, (err, coffee) => {
-        if (err) return res.status(500).json({error: err});
+        if (err) throw err;
 		if (!coffee) return res.status(404).json({error: "Coffee is not exist"});
 
-
-
-		res.status(200).json({point: 1});
+		let coffeePoints = coffee.toObject().points;
+		let avg, sum = 0;
+		for(let i = 0; i < coffeePoints.length; i++){
+			sum += coffeePoints[0].point;
+		}
+		avg = (sum / coffeePoints.length).toFixed(2);
+		res.status(200).json({"avg": avg});
 	})
 })
 
