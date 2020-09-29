@@ -27,7 +27,7 @@ router.get('/getAllCafes', (req, res) => {
     })
 })
 
-// 무쓸모
+// 무쓸모임
 router.get('/getCafeIdFromName/:cafeName', (req, res) => {
     Cafe.findOne({cafeName: req.params.cafeName}, (err, cafe) => {
         if (err) return res.status(500).json({error: err});
