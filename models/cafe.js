@@ -6,7 +6,11 @@ const cafeSchema = new mongoose.Schema({
         required: true,
         unique: true,
         trim: true
-    }
+    },
+    points: [
+        {userId: {type: String, require: true, unique: true}, 
+         point: {type: Number, require: true}}
+    ],
 },{
     versionKey: false
 });
