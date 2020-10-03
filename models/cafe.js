@@ -7,6 +7,10 @@ const cafeSchema = new mongoose.Schema({
         unique: true,
         trim: true
     },
+    isStored: {
+        type: Boolean,
+        default: false,
+    },
     points: [
         {userId: {type: String, require: true, unique: true}, 
          point: {type: Number, require: true}}
