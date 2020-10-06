@@ -26,11 +26,13 @@ const userSchema = new mongoose.Schema(
             trim: true
         },
         stars: [
-            {coffeeId: {type: String, required: true, unique: true}, 
-            point:{type: Number, required: true}}
+            {
+                coffeeId: {type: String, unique: true}, 
+                point: Number
+            }
         ],
         likes: [
-            {coffeeId: {type: String, required: true, unique: true}}
+            {coffeeId: {type: String, unique: true}}
         ]
     },
     {
