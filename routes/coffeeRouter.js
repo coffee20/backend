@@ -6,6 +6,7 @@ router.post('/coffeeInsert', function (req, res) {
 	let coffee = new Coffee();
 	coffee.coffeeName = req.body.coffeeName;
 	coffee.cafeName = req.body.cafeName;
+	coffee.imgUri = req.body.imgUri;
 
 	coffee.save(function (err) {
 		if (err) {

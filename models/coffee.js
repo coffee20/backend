@@ -10,6 +10,10 @@ const coffeeSchema = new Schema({
         type: String,
         require: true
     },
+    imgUri: {
+        type: String,
+        require: true
+    },
     points: [
         {userId: {type: String, require: true, unique: true}, 
          point: {type: Number, require: true}}
