@@ -98,4 +98,29 @@ router.put('/userStarDelete/:user_id/:coffee_id', (req, res) => {
     );
 })
 
+// User like insert
+router.put('/userLikeInsert/:user_id/:coffee_id', (req, res) => {
+    User.findByIdAndUpdate(req.params.user_id, 
+        { "$push" : {"likes": {
+            "coffeeId" : req.params.coffee_id
+        }}},
+        {"new": true, "upsert": true},
+        (err, like) => {
+            if(err) throw err;
+            res.json({result: 1, message: "like success! : User"});
+        }
+    );
+})
+
+// like delete
+router.put('/userStarDelete/:user_id/:coffee_id', (req, res) => {
+    User.findByIdAndUpdate(req.params.user_id,
+        { "$pull": {"likes": {"coffeeId": req.params.coffee_id}}},
+        (err, likes) => {
+            if(err) throw err;
+            res.json({result: 1, message: "star point deleted! : User"});
+        }
+    );
+})
+
 module.exports = router;
