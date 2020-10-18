@@ -19,6 +19,15 @@ router.post('/coffeeInsert', function (req, res) {
 	});
 });
 
+router.post('/coffeeManyInsert', async (req, res) => {
+	let payload = req.body;
+
+	await Coffee.insertMany(payload);
+	console.log(JSON.stringify(insertMany, '', '\t'));
+	res.status(200).send(1);
+
+});
+
 // Get Coffee ID by Cafe name and coffee name
 // 카페이름, 커피이름으로 커피 id 찾기
 router.get('/getCoffeeId/:Cafe_name/:Coffee_name', (req, res) => {
