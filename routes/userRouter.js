@@ -113,7 +113,7 @@ router.put('/userLikeInsert/:user_id/:coffee_id', (req, res) => {
 })
 
 // like delete
-router.put('/userStarDelete/:user_id/:coffee_id', (req, res) => {
+router.put('/userLikeDelete/:user_id/:coffee_id', (req, res) => {
     User.findByIdAndUpdate(req.params.user_id,
         { "$pull": {"likes": {"coffeeId": req.params.coffee_id}}},
         (err, likes) => {

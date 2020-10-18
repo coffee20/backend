@@ -28,6 +28,15 @@ router.post('/coffeeManyInsert', async (req, res) => {
 
 });
 
+
+router.get('/getCoffee/:Cafe_name/:Coffee_name', (req, res) => {
+	Coffee.findOne({ coffeeName: req.params.Coffee_name, cafeName: req.params.Cafe_name }, (err, coffee) => {
+		if (err) return res.status(500).json({ error: err });
+		if (!coffee) return res.status(404).json({ error: "Coffee is not exist" });
+		res.status(200).json(coffee);
+	})
+})
+
 // Get Coffee ID by Cafe name and coffee name
 // 카페이름, 커피이름으로 커피 id 찾기
 router.get('/getCoffeeId/:Cafe_name/:Coffee_name', (req, res) => {
