@@ -28,6 +28,14 @@ router.post('/coffeeManyInsert', async (req, res) => {
 
 });
 
+router.get('/getCoffeeByCafe/:Cafe_name', (req, res) => {
+	Coffee.find({ cafeName: req.params.Cafe_name }, (err, coffee) => {
+		if (err) return res.status(500).json({ error: err });
+		if (!coffee) return res.status(404).json({ error: "Coffee is not exist" });
+		res.status(200).json(coffee);
+	})
+})
+
 router.get('/getCoffee/:Cafe_name/:Coffee_name', (req, res) => {
 	Coffee.findOne({ coffeeName: req.params.Coffee_name, cafeName: req.params.Cafe_name }, (err, coffee) => {
 		if (err) return res.status(500).json({ error: err });
