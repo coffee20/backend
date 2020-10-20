@@ -118,7 +118,7 @@ router.put('/userLikeDelete/:user_id/:coffee_id', (req, res) => {
         { "$pull": {"likes": {"coffeeId": req.params.coffee_id}}},
         (err, likes) => {
             if(err) throw err;
-            res.json({result: 1, message: "star point deleted! : User"});
+            res.json({result: 1, message: "like deleted! : User"});
         }
     );
 })
