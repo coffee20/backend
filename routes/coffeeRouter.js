@@ -73,8 +73,29 @@ router.get('/getCoffeePointAvg/:coffee_id', (req, res) => {
 		for (let i = 0; i < coffeePoints.length; i++) {
 			sum += coffeePoints[i].point;
 		}
-		avg = (sum / coffeePoints.length).toFixed(1);
+		avg = (sum / coffeePoints.length).toFixed(2);
 		res.status(200).json({ "avg": avg });
+	})
+})
+
+router.get('/getPointTopCoffees', (req, res) => {
+	Coffee.find((err, coffee) => {
+		let arr = [];
+		if (err) return res.status(500).json({ error: err });
+		if (!coffee) return res.status(404).json({ error: "Coffee is not exist" });
+		for(let i = 0; i < coffee.length; i++){
+			let avg, sum = 0;
+			if(coffee[i].points.length === 0) continue;
+			for(let j = 0; j < coffee[i].points.length; j++){
+				sum += coffee[i].points[j].point;
+			}
+			avg = (sum / coffee[i].points.length).toFixed(2);
+			arr.push([coffee[i]._id, avg]);
+		}
+		arr.sort((a, b) => {
+			return b[1] - a[1];
+		})
+		res.status(200).json(arr);
 	})
 })
 
