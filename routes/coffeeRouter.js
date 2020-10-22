@@ -90,7 +90,7 @@ router.get('/getPointTopCoffees', (req, res) => {
 				sum += coffee[i].points[j].point;
 			}
 			avg = (sum / coffee[i].points.length).toFixed(2);
-			arr.push([coffee[i]._id, avg]);
+			arr.push({coffeeId: coffee[i]._id, pointAvg: avg});
 		}
 		arr.sort((a, b) => {
 			return b[1] - a[1];
