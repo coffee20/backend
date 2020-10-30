@@ -5,6 +5,14 @@
 const router = require('express').Router();
 const User = require('../models/user');
 
+router.get('/getUsers', (req, res) => {
+    User.find({}, (err, users) => {
+        if(err) return res.status(500).json({error: err});
+        if(!users) return res.status(404).json({error: "User is not exist"});
+        res.status(200).json(users);
+    })
+})
+
 // GET SINGLE USER
 router.get('/getUserByEmail/:user_email', function(req, res){
     User.findOne({email: req.params.user_email}, (err, user) => {
