@@ -99,6 +99,25 @@ router.get('/getPointTopCoffees', (req, res) => {
 	})
 })
 
+// Coffee tag insert
+router.put('/coffeeTagInsert/:coffee_id/:tag', (req, res) => {
+	Coffee.findByIdAndUpdate(req.params.coffee_id,
+		{
+			"$push": {
+				"tags": {
+					"tag": req.params.tag
+				}
+			}
+		},
+		{ "new": true, "upsert": true },
+		(err, coffee) => {
+			if (err) throw err;
+			if (!coffee) return res.status(404).json({ error: "Coffee is not exist" });
+			res.json({ result: 1, message: "star tag success! : coffee" });
+		}
+	);
+})
+
 // Coffee Star point insert
 router.put('/coffeeStarInsert/:coffee_id/:user_id/:point', (req, res) => {
 	Coffee.findByIdAndUpdate(req.params.coffee_id,

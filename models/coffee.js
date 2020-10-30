@@ -19,7 +19,7 @@ const coffeeSchema = new Schema({
          point: {type: Number, require: true}}
     ],
     tags: [
-        {type: String, unique: true}
+        {tag: {type: String, unique: true}}
     ]
 },{
     versionKey: false
